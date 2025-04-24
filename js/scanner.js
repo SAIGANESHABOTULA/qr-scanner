@@ -1,4 +1,3 @@
-
 const scanBtn = document.getElementById("scanAgainBtn");
 const reader = new Html5Qrcode("reader");
 
@@ -28,6 +27,7 @@ function showResult(data, isValid) {
   setTimeout(() => reader.stop(), 300);
 }
 
+// ✅ Initial QR scan
 reader.start(
   { facingMode: "environment" },
   { fps: 10, qrbox: 250 },
@@ -37,7 +37,7 @@ reader.start(
     try {
       const payload = JSON.parse(decodedText);
 
-      const res = await fetch("https://your-api-url.com/verify", {
+      const res = await fetch("https://qr-backend-0t0z.onrender.com/verify", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ data: payload.data, signature: payload.signature }),
@@ -56,6 +56,7 @@ reader.start(
   }
 );
 
+// 🔁 Re-scan button
 scanBtn.addEventListener("click", () => {
   document.getElementById("verificationResult").style.display = "none";
   scanBtn.style.display = "none";
@@ -68,7 +69,8 @@ scanBtn.addEventListener("click", () => {
 
       try {
         const payload = JSON.parse(decodedText);
-        fetch("https://qr-backend-0t0z.onrender.com/verify", {
+
+        const res = await fetch("https://qr-backend-0t0z.onrender.com/verify", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ data: payload.data, signature: payload.signature }),
