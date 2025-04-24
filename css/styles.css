@@ -1,0 +1,25 @@
+
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f4f4;
+  padding: 20px;
+}
+.container {
+  background: #fff;
+  border-radius: 12px;
+  padding: 2rem;
+  max-width: 500px;
+  margin: auto;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  text-align: center;
+}
+img.photo {
+  width: 100px;
+  height: 130px;
+  object-fit: cover;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  margin: 10px 0;
+}
+.valid { color: green; font-weight: bold; }
+.invalid { color: red; font-weight: bold; }

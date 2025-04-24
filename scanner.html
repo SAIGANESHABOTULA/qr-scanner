@@ -1,0 +1,30 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Student QR Verifier</title>
+  <link rel="stylesheet" href="./css/styles.css" />
+  <script src="https://unpkg.com/html5-qrcode"></script>
+</head>
+<body>
+  <div class="container">
+    <h2 class="main-heading">Student QR Verification</h2>
+    <div id="reader" style="width:100%; margin-top: 20px;"></div>
+
+    <div id="verificationResult" style="display:none; margin-top:20px;">
+      <h3 class="college-name">SVNIT</h3>
+      <p id="studentName"></p>
+      <p id="studentRoll"></p>
+      <p id="studentDeptYear"></p>
+      <img id="studentPhoto" class="photo" src="./assets/default-photo.jpg" alt="Student Photo" />
+      <p id="validityStatus"></p>
+    </div>
+
+    <button id="scanAgainBtn" style="display:none;">🔄 Scan Another QR</button>
+  </div>
+
+  <script src="./js/scanner.js"></script>
+</body>
+</html>
