@@ -68,7 +68,7 @@ scanBtn.addEventListener("click", () => {
 
       try {
         const payload = JSON.parse(decodedText);
-        const res = await fetch("https://your-api-url.com/verify", {
+        fetch("https://qr-backend-0t0z.onrender.com/verify", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ data: payload.data, signature: payload.signature }),
