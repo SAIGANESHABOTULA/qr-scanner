@@ -1,5 +1,3 @@
-
-
 const scanBtn = document.getElementById("scanAgainBtn");
 const reader = new Html5Qrcode("reader");
 
@@ -13,12 +11,8 @@ function showResult(data, isValid) {
     document.getElementById("studentRoll").innerText = `Roll No: ${data.rollNo}`;
     document.getElementById("studentDeptYear").innerText = `Dept: ${data.department}, Year: ${data.year}`;
 
-    // ✅ Show dynamic photo if available, else show default photo
-    if (data.photoUrl && data.photoUrl.trim() !== "") {
-      document.getElementById("studentPhoto").src = data.photoUrl;
-    } else {
-      document.getElementById("studentPhoto").src = "./assets/default-photo.jpg"; // fallback
-    }
+    // Load student photo based on Roll Number automatically
+    document.getElementById("studentPhoto").src = `./assets/photos/${data.rollNo}.jpg`;
 
     document.getElementById("validityStatus").innerText = "✅ Valid QR";
     document.getElementById("validityStatus").className = "valid";
@@ -36,7 +30,7 @@ function showResult(data, isValid) {
   reader.stop();
 }
 
-// ✅ Start scanning
+// Start scanning
 reader.start(
   { facingMode: "environment" },
   { fps: 10, qrbox: 250 },
@@ -65,7 +59,7 @@ reader.start(
   }
 );
 
-// 🔁 Scan again
+// Scan Again button
 scanBtn.addEventListener("click", () => {
   document.getElementById("verificationResult").style.display = "none";
   scanBtn.style.display = "none";
@@ -96,5 +90,3 @@ scanBtn.addEventListener("click", () => {
     }
   );
 });
-
-
