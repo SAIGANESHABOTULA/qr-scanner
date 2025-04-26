@@ -1,3 +1,5 @@
+
+
 const scanBtn = document.getElementById("scanAgainBtn");
 const reader = new Html5Qrcode("reader");
 
@@ -10,24 +12,31 @@ function showResult(data, isValid) {
     document.getElementById("studentName").innerText = `Name: ${data.name}`;
     document.getElementById("studentRoll").innerText = `Roll No: ${data.rollNo}`;
     document.getElementById("studentDeptYear").innerText = `Dept: ${data.department}, Year: ${data.year}`;
-    document.getElementById("studentPhoto").src = "./assets/default-photo.jpg";
+
+    // ✅ Show dynamic photo if available, else show default photo
+    if (data.photoUrl && data.photoUrl.trim() !== "") {
+      document.getElementById("studentPhoto").src = data.photoUrl;
+    } else {
+      document.getElementById("studentPhoto").src = "./assets/default-photo.jpg"; // fallback
+    }
+
     document.getElementById("validityStatus").innerText = "✅ Valid QR";
     document.getElementById("validityStatus").className = "valid";
   } else {
     document.getElementById("studentName").innerText = "";
     document.getElementById("studentRoll").innerText = "";
     document.getElementById("studentDeptYear").innerText = "";
-    document.getElementById("studentPhoto").src = "";
+    document.getElementById("studentPhoto").src = "./assets/default-photo.jpg";
     document.getElementById("validityStatus").innerText = "❌ Invalid or Tampered QR Code";
     document.getElementById("validityStatus").className = "invalid";
   }
 
   resultBox.style.display = "block";
   scanBtn.style.display = "inline-block";
-  setTimeout(() => reader.stop(), 300);
+  reader.stop();
 }
 
-// ✅ Initial QR scan
+// ✅ Start scanning
 reader.start(
   { facingMode: "environment" },
   { fps: 10, qrbox: 250 },
@@ -56,7 +65,7 @@ reader.start(
   }
 );
 
-// 🔁 Re-scan button
+// 🔁 Scan again
 scanBtn.addEventListener("click", () => {
   document.getElementById("verificationResult").style.display = "none";
   scanBtn.style.display = "none";
@@ -87,3 +96,5 @@ scanBtn.addEventListener("click", () => {
     }
   );
 });
+
+
